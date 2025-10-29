@@ -41,7 +41,7 @@ module.exports = {
                      '@babel/preset-react'
                   ],
                   plugins: [
-                     '@babel/transform-runtime'
+                     '@babel/plugin-transform-runtime'
                   ]
                }
             },
@@ -66,7 +66,8 @@ module.exports = {
 
    plugins: [
       new webpack.ProgressPlugin(),
-      new FaviconsWebpackPlugin('src/favicon.ico'),
+   // utilise une image existante comme source pour générer les favicons
+   new FaviconsWebpackPlugin('src/images/flyingSaucer-petit.png'),
       new HtmlWebpackPlugin({
          template: path.resolve(__dirname, 'src', 'index.html'),
          filename: './index.html',

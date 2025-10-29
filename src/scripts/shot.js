@@ -1,5 +1,5 @@
 import Mobile from './mobile.js';
-import ImgSrc from './assets/images/tir.png';
+const ImgSrc = 'images/tir.png';
 
 export default class Shot extends Mobile {
 
@@ -16,7 +16,13 @@ export default class Shot extends Mobile {
     }
 
     draw(context) {
-        super.draw(context);
+        // si l'image est disponible, la dessiner, sinon dessiner un petit trait
+        if (this.image && this.image.complete && this.image.width > 0) {
+            super.draw(context);
+        } else {
+            context.fillStyle = 'yellow';
+            context.fillRect(this.x, this.y, 8, 2);
+        }
     }
 
     #createImage(imageSource) {

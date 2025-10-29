@@ -79,7 +79,8 @@ export default class Game {
     }
 
     updateScore(points) {
-      this.score += points;
+      // Empêche le score d'être négatif
+      this.score = Math.max(0, this.score + points);
       document.getElementById('score').textContent = this.score;
     }
 

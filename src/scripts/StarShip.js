@@ -1,5 +1,6 @@
 import Mobile from './mobile.js';
-import ImgSrc from './assets/images/vaisseau-ballon-petit.png';
+// utilise le dossier `src/images` copié par webpack -> accessible via `images/...`
+const ImgSrc = 'images/vaisseau-ballon-petit.png';
 
 export default class StarShip extends Mobile {
 

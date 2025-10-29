@@ -13,19 +13,29 @@ export default class Mobile {
     }
 
     draw(context) {
-            context.drawImage(this.image, this.x, this.y);
+            // si l'image est chargée, on la dessine, sinon on dessine un placeholder
+            if (this.image && this.image.complete && this.image.width > 0) {
+                context.drawImage(this.image, this.x, this.y);
+            } else {
+                // placeholder simple (rectangle)
+                context.fillStyle = 'magenta';
+                context.fillRect(this.x, this.y, Mobile.IMG_WIDTH, Mobile.IMG_HEIGHT);
+            }
     }
 
     move(canvas, game) {
-        this.x = Math.max(0, Math.min(box.width - this.width, this.x + this.deltaX));
-        this.y = Math.max(0, Math.min(box.height - this.height, this.y + this.deltaY));
+        // utilise le canvas passé en paramètre (box était une variable inexistante)
+        const maxX = canvas.width - this.width;
+        const maxY = canvas.height - this.height;
+        this.x = Math.max(0, Math.min(maxX, this.x + this.deltaX));
+        this.y = Math.max(0, Math.min(maxY, this.y + this.deltaY));
     }
 
     get width() {
-        return this.image.width;
+        return (this.image && this.image.width) || Mobile.IMG_WIDTH;
     }
     get height() {
-        return this.image.height;
+        return (this.image && this.image.height) || Mobile.IMG_HEIGHT;
     }
 
 }
